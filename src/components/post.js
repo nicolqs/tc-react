@@ -8,9 +8,9 @@ class Post extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <span>{this.props.author}</span>
-        <span>{this.props.id}</span>
+        <h1 className="author">{this.props.title}</h1>
+        <span className="author">{this.props.author}</span>
+        <span className="post_id">{this.props.id}</span>
       </div>
     )
   }

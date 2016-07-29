@@ -38,11 +38,16 @@ class PostList extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.state.posts.map(post => {
-           return <Post key={post.ID} id={post.ID} author={post.author.name} title={post.title}  />;
-        })}
-      </ul>
+      <div className="river-main">
+        <div className="latest">
+          <h2 className="title">Latest</h2>
+        </div>
+        <ul className="river">
+          {this.state.posts.map(post => {
+            return <Post key={post.ID} id={post.ID} author={post.author.name} title={post.title}  />;
+         })}
+        </ul>
+      </div>
     )
   }
 }
