@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@import url('//fonts.googleapis.com/css?family=Titillium+Web:200normal');
+
+$space-grey: #3E433E;
+$light-grey: #D5D5D5;
+
+#main .river-main {
+  .latest {
+    background-color: $space-grey;
+    max-width: 18em;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    padding: .5em 0 0;
+    h2 {
+      margin: 0 auto;
+      color: white;
+    }
+  }
+  .river {
+    border-top: 4px solid $space-grey;
+    margin: 0;
+    padding: 0;
+  }
+}
