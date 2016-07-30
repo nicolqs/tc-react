@@ -21,19 +21,26 @@ class PostList extends React.Component {
   }
 
   _getPosts() {
-    const url = 'https://public-api.wordpress.com/rest/v1.1/sites/techcrunch.com/posts?number=5';
+    var posts = JSON.parse(localStorage.getItem('posts'));
 
-    this.serverRequest = $.ajax({
-      url: url,
-      dataType: 'json',
-      success: function(data) {
-        this.setState({ posts: data.posts });
-      }.bind(this),
-      error: function(xhr, status, err) {
-          this.setState({ posts: null });
-          console.error(status, err.toString());
-      }.bind(this)
-    });
+    if (!posts) {
+      const url = 'https://public-api.wordpress.com/rest/v1.1/sites/techcrunch.com/posts?number=10';
+
+      this.serverRequest = $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function(data) {
+          this.setState({ posts: data.posts });
+          posts = localStorage.setItem('posts', JSON.stringify(data.posts));
+        }.bind(this),
+        error: function(xhr, status, err) {
+            this.setState({ posts: null });
+            console.error(status, err.toString());
+        }.bind(this)
+      });
+    } else {
+      this.setState({ posts: posts });
+    }
   }
 
   render() {
@@ -44,7 +51,7 @@ class PostList extends React.Component {
         </div>
         <ul className="river">
           {this.state.posts.map(post => {
-            return <Post key={post.ID} id={post.ID} author={post.author.name} title={post.title}  />;
+            return <Post key={post.ID} post={post} />;
          })}
         </ul>
       </div>
